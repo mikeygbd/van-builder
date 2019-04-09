@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="/css/responsive.css">
+        <link rel="stylesheet" href="/css/user_index.css">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    </head>
+
+    <body class="white-wood" >
+      <div class="wrapper">
+  <div class="box">
+      <div class="row row-offcanvas row-offcanvas-left">
+          <div class="column col-sm-10 col-xs-11" id="main">
+          <!-- New Nav -->
+          <header class="medium-fade shadow">
+            <div class="wrapper">
+
+              <div id="logo" >
+                <h1></h1>
+                <h2>Van Builder</h2>
+              </div>
+            </div>
+
+            <div id="navbar" class="light-fade">
+              <div class="wrapper">
+
+                <div id="account">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="/logout">Logout</a></li>
+                      <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
+                </ul>
+                </div>
+                <nav>
+                  <a class="selected" href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a><a href="/news_feeds">News Feed</a>
+                </nav>
+              </div>
+            </div>
+          </header>
+          <div id="social">
+          <a href="https://www.instagram.com/van.builder/?hl=en" target="_blank"><img src="https://ya-webdesign.com/images/instagram-black-logo-png-6.png" alt="Instagram"></a><br>
+          <a href="https://twitter.com/" target="_blank"><img src="http://pngimg.com/uploads/twitter/twitter_PNG2.png" alt="Twitter"></a><br>
+          <a href="https://www.facebook.com/" target="_blank"><img src="https://cdn3.iconfinder.com/data/icons/transparent-on-dark-grey/500/icon-02-512.png" alt="Facebook"></a>
+        </div>
+
+          <!-- New Nav -->
+              <div class="padding">
+                  <div class="full col-sm-9">
+                      <!-- content -->
+                      <div class="row">
+                       <!-- main col left -->
+                       <div class="col-sm-5 ">
+                            <div class="panel panel-default shadow">
+                              <div class="panel-heading">
+                                 <h4>Your Van</h4>
+                               </div>
+                              <div class="panel-thumbnail van"><img src="http://tinyvanbigliving.com/wp-content/uploads/2017/03/logo_03.png" width=250 class="img-responsive"></div>
+                              <div class="panel-body">
+                                <p class="lead"> <strong>Welcome, <%= current_user.name %></strong></p>
+                                <div class="van">
+                                <h1><img width=200 src= "<%=current_user.url%>"></h1>
+                                </div>
+                                <p class="lead"><strong>Make:</strong> <%= current_user.van_make %></p>
+                                <p class="lead"> <strong>Model:</strong> <%= current_user.van_model %></p>
+                                <p class="lead"> <strong>Year:</strong> <%= current_user.van_year %></p>
+                                <p class="lead"> <strong>Wheelbase:</strong> <%= current_user.van_wheelbase %></p>
+                                <p class="lead"> <strong>Color:</strong> <%= current_user.van_color %></p>
+                              </div>
+                            </div>
+
+                            <div class="panel panel-default shadow">
+                              <div class="panel-heading">
+                                <a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part</span></a>
+                                 <h4>Your Parts</h4>
+                               </div>
+                                <div class="panel-body">
+                                  <div class="list-group shadow">
+                                    <% current_user.parts.each do |part| %>
+                                    <a href= '/parts/<%= part.id %>' role="button" class="list-group-item"><img width=50 src= "<%=part.url%>"> <%=part.manufacturer%> <%=part.name%><br> <strong>Qty:</strong> <%=part.qty%> </a>
+                                    <% end %>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- main col right -->
+                        <div class="col-sm-7">
+                          <div class="panel panel-default shadow">
+                            <div class="panel-heading"><h4>What Is Van Builder?</h4></div>
+                            <div class="panel-body">
+                              Van Builder is a web application, designed by van life enthusiast, for van life enthusiasts. We want you to have one place to go for your van build. This application gives you the ability to keep track of the parts you have purchased and your spending. It also allows you to keep track of the parts you want in the future.<br><br>Go ahead and add parts to your collection or to your wishlist.</div>
+                          </div>
+
+                          <div class="panel panel-default shadow">
+                             <div class="panel-heading"><a href="https://www.campervan-hq.com/collections" target="_blank" class="pull-right">View all</a> <h4>Recomended Parts</h4></div>
+                              <div class="panel-body">
+                                  <ul id="rig">
+                                    <% PartsScraper.recomended_parts.each do |part| %>
+                                    <li>
+                                        <a class="rig-cell shadow" target="_blank" href="<%= part[:page_link] %>">
+                                            <img class="rig-img"src="<%= part[:url] %>">
+                                            <span class="rig-overlay"></span>
+                                            <span class="rig-text"><%= part[:part_name] %></span>
+                                        </a>
+                                    </li>
+                                <% end %>
+                                  </ul>
+                              </div>
+                          </div>
+
+                          <div class="panel panel-default shadow">
+                            <div class="panel-heading">
+                              <a href="#postModal2" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part To Wishlist</span></a>
+                               <h4>Your Wishlist</h4>
+                             </div>
+                              <div class="panel-body">
+                                <div class="list-group shadow">
+                                  <% current_user.wishlist_parts.each do |wishlist_part| %>
+                                  <a href= '/wishlist_parts/<%= wishlist_part.id %>' role="button" class="list-group-item"><img width=50 src= "<%=wishlist_part.url%>"> <%=wishlist_part.manufacturer%> <%=wishlist_part.name%><br> <strong>Qty:</strong> <%=wishlist_part.qty%> </a>
+                                  <% end %>
+                                </div>
+                              </div>
+                          </div>
+
+                          <div class="panel panel-default shadow">
+                            <div class="panel-heading">
+                              <a href="#postModal3" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Post</span></a>
+                               <h4>Your Blog Posts</h4>
+                             </div>
+                              <div class="panel-body">
+                                <div class="list-group shadow">
+                                  <% current_user.posts.each do |post| %>
+                                  <a href= '/posts/<%= post.id %>' role="button" class="list-group-item"> <div class="lead"><%=post.title%><br><br> <%=post.embed%></div></a>
+                                  <% end %>
+                                </div>
+                              </div>
+                          </div>
+
+                      </div>
+                        </div>
+                     </div><!--/row -->
+                  </div><!-- /col-9 -->
+              </div><!-- /padding -->
+          </div>
+          <!-- /main -->
+      </div>
+  </div>
+<!--post modal-->
+<div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    Add Part
+    </div>
+    <div class="modal-body">
+        <form action="/parts/new" method=POST class="form center-block" autocomplete="on">
+          <div class="form-group">
+            <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
+            <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
+            <textarea class="form-control input-lg" name = "price" autofocus="" placeholder="Price" required></textarea>
+            <textarea class="form-control input-lg" name = "qty" autofocus="" placeholder="Quantity" required>1</textarea>
+            <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
+          </div>
+          <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+
+<div id="postModal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      Add Part To Wishlist
+      </div>
+      <div class="modal-body">
+          <form action="/wishlist_parts/new" method=POST class="form center-block">
+            <div class="form-group">
+              <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
+              <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
+              <textarea class="form-control input-lg" name = "price" autofocus="" placeholder="Price" required></textarea>
+              <textarea class="form-control input-lg" name = "qty" autofocus="" placeholder="Quantity" required>1</textarea>
+              <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
+            </div>
+            <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+          </form>
+      </div>
+      </div>
+  </div>
+  </div>
+
+  <div id="postModal3" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        Add Post
+        </div>
+        <div class="modal-body">
+            <form action="/posts/new" method=POST class="form center-block">
+              <div class="form-group">
+                <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
+                <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
+                <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
+              </div>
+              <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+<footer>
+    &copy; 2019 Van Builder. All Rights Reserved.
+</footer>
+  </body>
+</html>

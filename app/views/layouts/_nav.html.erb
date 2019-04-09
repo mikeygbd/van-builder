@@ -1,0 +1,25 @@
+<!-- New Nav -->
+        <header class="medium-fade shadow">
+
+
+          <div id="navbar" class="light-fade">
+            <div class="wrapper">
+
+              <div id="account">
+                <% if user_signed_in? %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/users/sign_out">Logout</a></li>
+                    <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
+              </ul>
+              </div>
+              <nav>
+
+                <a href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a><a href="/news_feeds">News Feed</a>
+                <% else %>
+                <a href="/users/sign_up">Sign Up</a><a href="/users/sign_in">Login</a>
+                <% end %>
+              </nav>
+            </div>
+          </div>
+        </header>
