@@ -4,7 +4,7 @@
 <hgroup>
 <h1><strong>Log in</strong></h1>
 </hgroup>
-<%= form_for(resource, as: resource_name, url: user_session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
   <div class="group">
 
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
