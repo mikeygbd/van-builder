@@ -9,29 +9,43 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class=" group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
   </div>
 
   <div class=" group">
-    <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
   </div>
 
   <div class=" group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation" %>
   </div>
 
-  <button class="button buttonBlue">
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class=" group">
+    <%= f.text_field :van_make, autocomplete: "van-make", placeholder: "Van Make" %>
   </div>
-  <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-  </button>
+
+  <div class=" group">
+    <%= f.text_field :van_model, autocomplete: "van-model", placeholder: "Van Model" %>
+  </div>
+
+  <div class=" group">
+    <%= f.text_field :van_year, autocomplete: "van-year", placeholder: "Van Year" %>
+  </div>
+
+  <div class=" group">
+    <%= f.text_field :van_wheelbase, autocomplete: "van-Wheelbase", placeholder: "Van Wheelbase" %>
+  </div>
+
+  <div class=" group">
+    <%= f.text_field :van_color, autocomplete: "van-color", placeholder: "Van Color" %>
+  </div>
+
+
+
+    <%= f.submit "Sign up", :class => 'button buttonBlue' %>
+
 <% end %>
 
 <%= render "devise/shared/links" %>

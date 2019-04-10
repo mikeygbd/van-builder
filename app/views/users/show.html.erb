@@ -28,13 +28,13 @@
               </div>
             </div>
 
-            <!-- <div id="navbar" class="light-fade">
+            <div id="navbar" class="light-fade">
               <div class="wrapper">
 
                 <div id="account">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
                   <ul class="dropdown-menu">
-                      <li><a href="/logout">Logout</a></li>
+                      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
                       <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
                 </ul>
                 </div>
@@ -42,12 +42,12 @@
                   <a class="selected" href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a><a href="/news_feeds">News Feed</a>
                 </nav>
               </div>
-            </div> -->
+            </div>
           </header>
           <div id="social">
           <a href="https://www.instagram.com/van.builder/?hl=en" target="_blank"><img src="https://ya-webdesign.com/images/instagram-black-logo-png-6.png" alt="Instagram"></a><br>
           <a href="https://twitter.com/" target="_blank"><img src="http://pngimg.com/uploads/twitter/twitter_PNG2.png" alt="Twitter"></a><br>
-          <a href="https://www.facebook.com/" target="_blank"><img src="https://cdn3.iconfinder.com/data/icons/transparent-on-dark-grey/500/icon-02-512.png" alt="Facebook"></a>
+          <a href="https://www.facebook.com/van.builder.56" target="_blank"><img src="https://clipart.info/images/ccovers/1509135109flat-facebook-logo-black-and-white-png.png" alt="Facebook"></a>
         </div>
 
           <!-- New Nav -->

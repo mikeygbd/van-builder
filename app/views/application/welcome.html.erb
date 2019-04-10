@@ -10,7 +10,9 @@
         <h1><img src="/img/black_white.png" alt="Van Builder Logo"></h1>
         <h1 style="font-family:'Bebas Neue';font-weight:normal;">KEEP TRACK OF THE PARTS FOR YOUR VAN BUILD</h1>
             <a href="/users/sign_up" class="button btn btn-primary btn-primary-outline btn-pill">Sign Up</a>
-            <a href="/users/sign_in" class="button btn btn-primary btn-primary-outline btn-pill">Log In</a>
+            <a href="/users/sign_in" class="button btn btn-primary btn-primary-outline btn-pill">Log In</a><br><br>
+            <%= link_to "Sign in using Facebook", '/users/auth/facebook', :class => 'button btn btn-primary btn-primary-outline btn-pill' %>
+            <%= link_to "Sign in using Google", '/users/auth/google', :class => 'button btn btn-primary btn-primary-outline btn-pill' %>
       </div>
     </div>
   </body>

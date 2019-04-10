@@ -4,8 +4,5 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def sign_out
-    render 'application#welcome'
 
-  end
 end

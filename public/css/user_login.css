@@ -129,6 +129,10 @@ to 	{ width: 0; background: transparent; }
 
 
 /* Button */
+.btn-pill {
+  background-color:black;
+  color: white;
+}
 
 .button {
 position: relative;
@@ -161,7 +165,9 @@ text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
 
 .buttonBlue:hover { background: #357bd8; }
 
-
+.button2 {
+padding: 500px
+}
 /* Ripples container */
 
 .ripples {
