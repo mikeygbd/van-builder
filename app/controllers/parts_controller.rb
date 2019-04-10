@@ -14,17 +14,20 @@ class PartsController < ApplicationController
     @part = Part.find(params[:id])
   end
 
+  def create
+    @part = Part.new(part_params)
+    @part.save
+    redirect_to part_path(@part)
+  end
+
   def edit
     @part = Part.find(params[:id])
   end
 
   def update
     @part = Part.find(params[:id])
-    if @part.update(part_params)
+    @part.update(part_params)
       redirect_to part_path(@part)
-    else
-      render :new
-    end
   end
 
   def destroy
