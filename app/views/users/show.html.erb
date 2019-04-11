@@ -28,21 +28,7 @@
               </div>
             </div>
 
-            <div id="navbar" class="light-fade">
-              <div class="wrapper">
-
-                <div id="account">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
-                  <ul class="dropdown-menu">
-                      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-                      <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
-                </ul>
-                </div>
-                <nav>
-                  <a class="selected" href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a><a href="/news_feeds">News Feed</a>
-                </nav>
-              </div>
-            </div>
+            <%= render '/layouts/nav' %>
           </header>
           <div id="social">
           <a href="https://www.instagram.com/van.builder/?hl=en" target="_blank"><img src="https://ya-webdesign.com/images/instagram-black-logo-png-6.png" alt="Instagram"></a><br>
@@ -138,11 +124,13 @@
                               <div class="panel-body">
                                 <div class="list-group shadow">
                                   <% current_user.posts.each do |post| %>
-                                  <a href= '/posts/<%= post.id %>' role="button" class="list-group-item"> <div class="lead"><%=post.title%><br><br> <%=post.embed%></div></a>
+                                  <a href= '/posts/<%= post.id %>' role="button" class="list-group-item"> <div class="lead"><%=post.title%><br><br> <%=post.embed.html_safe%></div></a>
                                   <% end %>
+
                                 </div>
                               </div>
                           </div>
+
 
                       </div>
                         </div>

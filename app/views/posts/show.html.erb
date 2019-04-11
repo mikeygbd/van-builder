@@ -12,9 +12,7 @@
             <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
       </ul>
       </div>
-      <nav>
-        <a href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a><a href="/news_feeds">News Feed</a>
-      </nav>
+    <%= render "layouts/nav" %>
     </div>
   </div>
   </header>
@@ -24,11 +22,15 @@
 <form class="post shadow">
   <div id="contact"
     <h2><strong><%= @post.title %></strong> </h2><br><br>
-    <%= @post.embed %><br><br>
+    <%= @post.embed.html_safe %><br><br>
 
     <div class="description">
     <h4><%= @post.description %></h4>
     </div>
+    <h2>Comments:</h2>
+    <% @post.comments.each do |comment| %>
+    <%= link_to comment.user.email, user_path(comment.user) %> said: <%= comment.content %>
+    <% end %>
     <br>
     <a href="/posts/<%= @post.id %>/edit">Edit</a>
     &nbsp; | &nbsp;

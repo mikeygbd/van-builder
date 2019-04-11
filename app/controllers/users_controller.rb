@@ -4,5 +4,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.delete
+    redirect_to users_path(@users)
+  end
+
 
 end

@@ -12,9 +12,7 @@
           <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
     </ul>
     </div>
-    <nav>
-      <a href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a><a href="/news_feeds">News Feed</a>
-    </nav>
+    <%= render "layouts/nav" %>
   </div>
 </div>
 <body>
@@ -22,13 +20,13 @@
     <div id="contact"
     <h2> <strong><u>Edit Post</u></strong> </h2>
     <h3><strong>Title:</strong> <%= @post.title %><br></h3>
-    <h3><strong>Video:</strong> <%= @post.embed %><br></h3>
+    <h3><strong>Video:</strong> <%= @post.embed.html_safe %><br></h3>
     <h3><strong>Description:</strong> <%= @post.description %></h3>
 
       <form action="/posts/<%= @post.id %>" method="POST">
       <input id="hidden" type="hidden" name="_method" value="PATCH">
       <input type="text" placeholder= "Title:" name="title" value="<%= @post.title %>">
-      <input type="text" placeholder= "Embed Video:" name="embed" value="<%= @post.embed %>">
+      <input type="text" placeholder= "Embed Video:" name="embed" value="<%= @post.embed.html_safe %>">
       <textarea name="description" placeholder= "Description" rows="6" cols="50" value="<%= @post.description %>"><%= @post.description %></textarea><br><br>
       <button type="update" value="Update" id="update">Update</button>
     </form>

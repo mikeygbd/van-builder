@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-
+  # get 'news_feeds/index'
+  # post 'news_feeds/index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :parts
   resources :posts
   resources :wishlist_parts
   resources :sessions
   resources :users
+  resources :comments
+  resources :news_feeds
+  get '/users/:id/delete', to: 'users#destroy'
   get '/parts/:id/delete', to: 'parts#destroy'
   get '/wishlist_parts/:id/delete', to: 'wishlist_parts#destroy'
   get '/posts/:id/delete', to: 'posts#destroy'
