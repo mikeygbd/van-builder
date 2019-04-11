@@ -162,7 +162,7 @@
     Add Part
     </div>
     <div class="modal-body">
-        <form action="/parts/new" method=POST class="form center-block" autocomplete="on">
+        <!-- <form action="/parts/new" method=POST class="form center-block" autocomplete="on">
           <div class="form-group">
             <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
             <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
@@ -171,7 +171,20 @@
             <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
           </div>
           <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-        </form>
+        </form> -->
+
+        <%= form_for Part.new, :class => 'form center-block' do |f| %>
+        <div class="form-group">
+        <%= f.text_field :manufacturer, placeholder: "Manufacturer", :class => 'form-control input-lg ' %><br>
+        <%= f.text_field :name, placeholder: "Name", :class => 'form-control input-lg' %><br>
+        <%= f.text_field :price, placeholder: "Price", :class => 'form-control input-lg ' %> <br>
+        <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
+        <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
+        </div>
+
+        <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
+
+        <% end %>
     </div>
     </div>
 </div>
@@ -185,7 +198,7 @@
       Add Part To Wishlist
       </div>
       <div class="modal-body">
-          <form action="/wishlist_parts/new" method=POST class="form center-block">
+          <!-- <form action="/wishlist_parts/new" method=POST class="form center-block">
             <div class="form-group">
               <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
               <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
@@ -194,7 +207,21 @@
               <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
             </div>
             <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-          </form>
+          </form> -->
+
+          <%= form_for WishlistPart.new, :class => 'form center-block' do |f| %>
+          <div class="form-group">
+          <%= f.text_field :manufacturer, placeholder: "Manufacturer", :class => 'form-control input-lg ' %><br>
+          <%= f.text_field :name, placeholder: "Name", :class => 'form-control input-lg' %><br>
+          <%= f.text_field :price, placeholder: "Price", :class => 'form-control input-lg ' %> <br>
+          <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
+          <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
+          </div>
+
+          <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
+
+          <% end %>
+
       </div>
       </div>
   </div>
@@ -208,14 +235,26 @@
         Add Post
         </div>
         <div class="modal-body">
-            <form action="/posts/new" method=POST class="form center-block">
+            <!-- <form action="/posts/new" method=POST class="form center-block">
               <div class="form-group">
                 <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
                 <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
                 <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
               </div>
               <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-            </form>
+            </form> -->
+
+            <%= form_for Post.new, :class => 'form center-block' do |f| %>
+            <div class="form-group">
+            <%= f.text_field :title, placeholder: "Title", :class => 'form-control input-lg ' %><br>
+            <%= f.text_area :embed, placeholder: "Embed Video", :class => 'form-control input-lg' %><br>
+            <%= f.text_area :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
+            </div>
+
+            <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
+
+            <% end %>
+
         </div>
         </div>
     </div>

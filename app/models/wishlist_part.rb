@@ -1,3 +1,3 @@
-class WishlistPart < ApplicationRecord
+class WishlistPart < ActiveRecord::Base
   belongs_to :user
 end

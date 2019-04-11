@@ -51,22 +51,23 @@
               <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
             </form> -->
 
-            <% form_for new_part_path(@part), :class => 'form center-block' do |f| %>
-            <div class="form-group">
 
-              <div class="form-group form-control input-lg">
-            <%= f.label :manufacturer, :class => 'form-control input-lg' %>
-            <%= f.text_field :manufacturer %>
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-            <%= f.label :price %>
-            <%= f.text_field :price %>
-            <%= f.label :qty %>
-            <%= f.text_field :qty %>
-            <%= f.submit %>
+
+            <%= form_for Part.new, :class => 'form center-block' do |f| %>
+            <div class="form-group">
+            <%= f.text_field :manufacturer, placeholder: "Manufacturer", :class => 'form-control input-lg ' %><br>
+            <%= f.text_field :name, placeholder: "Name", :class => 'form-control input-lg' %><br>
+            <%= f.text_field :price, placeholder: "Price", :class => 'form-control input-lg ' %> <br>
+            <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
+            <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
+            </div>
+
+            <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
+
             <% end %>
-              </div>
-              </div>
+
+
+
         </div>
         </div>
     </div>

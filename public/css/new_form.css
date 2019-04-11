@@ -17,9 +17,10 @@
 }
 .form-control {
 
+
 }
 
-.panel textarea, .well textarea, textarea.form-control
+.panel textarea, .well textarea, .form-control
 {
    reprice: none;
 }
@@ -64,13 +65,17 @@
 	padding:0px;
 }
 
-.modal-body textarea.form-control
+.modal-body .form-control
 {
    reprice: none;
    border:0;
    box-shadow:0 0 0;
 }
-
+#submit {
+  float: right;
+  margin-top: 10px;
+  width: 100%;
+}
 small.text-muted {
   font-family:courier,courier-new,monospace;
 }

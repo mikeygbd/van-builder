@@ -1,2 +1,46 @@
-<h1>Parts#edit</h1>
-<p>Find me in app/views/parts/edit.html.erb</p>
+
+<html>
+<head>
+  <link rel="stylesheet" href="/css/edit_part.css">
+</head>
+<div id="navbar" class="light-fade">
+  <div class="wrapper">
+
+    <div id="account">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
+      <ul class="dropdown-menu">
+          <li><a href="/logout">Logout</a></li>
+          <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
+    </ul>
+    </div>
+    <nav>
+      <a href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a><a href="/news_feeds">News Feed</a>
+    </nav>
+  </div>
+</div>
+<body>
+  <div class="container">
+    <div id="contact"
+    <h2> <strong><u>Edit Part</u></strong> </h2>
+    <h3><strong>Manufacturer:</strong> <%= @part.manufacturer %><br></h3>
+    <h3><strong>Name:</strong> <%= @part.name %></h3>
+    <h3><strong>Description:</strong> <%= @part.description %></h3>
+    <h3><strong>Quanity:</strong> <%= @part.qty %></h3>
+      <img src="<%= @part.url %>"></img>
+      <h3> <strong>Price:</strong> $<%= amount(@part.price) %> </h3>
+      <h3><strong>Total Price:</strong> $<%= amount((@part.price * @part.qty)) %> </h3>
+      <form action="/parts/<%= @part.id %>" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="PATCH">
+      <input type="text" placeholder= "Manufacturer:" name="manufacturer" value="<%= @part.manufacturer %>">
+      <input type="text" placeholder= "Name:"name="name" value="<%= @part.name %>">
+      <input type="text" placeholder= "Price:" name="price" value="<%= amount(@part.price) %>">
+      <input type="text" placeholder= "Quantity:" name="qty" value="<%= @part.qty %>">
+      <input type="text" placeholder= "Description:" name="description" value="<%= @part.description %>"><br><br>
+      <button type="update" value="Update" id="update">Update</button>
+    </form>
+    </div>
+  </div>
+</body>
+<footer>
+    &copy; 2019 Van Builder. All Rights Reserved.
+</footer>

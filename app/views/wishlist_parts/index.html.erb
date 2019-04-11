@@ -1,2 +1,86 @@
-<h1>WishlistParts#index</h1>
-<p>Find me in app/views/wishlist_parts/index.html.erb</p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="/css/responsive.css">
+
+<head>
+  <link rel="stylesheet" href="/css/wishlist_parts.css">
+  <link rel="stylesheet" href="/css/new_form.css">
+</head>
+<div id="navbar" class="light-fade">
+  <div class="wrapper">
+
+    <div id="account">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
+      <ul class="dropdown-menu">
+          <li><a href="/logout">Logout</a></li>
+          <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
+    </ul>
+    </div>
+    <nav>
+      <a  href="/users/index">Home</a><a href="/parts">My Parts</a><a class="selected" href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a>
+    </nav>
+  </div>
+</div>
+<body>
+  <h1><strong>My Wishlist</strong><a href="#postModal2" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part</span></a></h1>
+<% total = [] %>
+<% current_user.wishlist_parts.each do |wishlist_part| %>
+<% total << (wishlist_part.price * wishlist_part.qty) %>
+<form class="wlform shadow">
+  <div id="contact">
+  <h2><strong><%= wishlist_part.manufacturer %> <%= wishlist_part.name %></strong> </h2>
+  <h4><%= wishlist_part.description %><br></h4>
+  <h2><strong>Quantity:</strong> <%= wishlist_part.qty %><br></h2>
+  <img src="<%= wishlist_part.url %>"></img><br>
+  <h2><strong>Price:</strong> $<%= amount(wishlist_part.price) %><br></h2><br>
+  <a href="/wishlist_parts/<%= wishlist_part.id %>/edit">Edit</a>
+    &nbsp; | &nbsp;
+    <a href="/wishlist_parts/<%= wishlist_part.id %>/delete">Delete</a>
+  </div>
+</form>
+<% end %>
+
+<div class="total">
+<h3> <strong>Wishlist Total:</strong> $<%= amount(total.inject(0, :+)) %> </h3>
+</div>
+
+<div id="postModal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      Add Part To Wishlist
+      </div>
+      <div class="modal-body">
+          <!-- <form action="/wishlist_parts/new" method=POST class="form center-block">
+            <div class="form-group">
+              <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
+              <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
+              <textarea class="form-control input-lg" name = "price" autofocus="" placeholder="Price" required></textarea>
+              <textarea class="form-control input-lg" name = "qty" autofocus="" placeholder="Quantity" required>1</textarea>
+              <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
+            </div>
+            <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+          </form> -->
+
+          <%= form_for WishlistPart.new, :class => 'form center-block' do |f| %>
+          <div class="form-group">
+          <%= f.text_field :manufacturer, placeholder: "Manufacturer", :class => 'form-control input-lg ' %><br>
+          <%= f.text_field :name, placeholder: "Name", :class => 'form-control input-lg' %><br>
+          <%= f.text_field :price, placeholder: "Price", :class => 'form-control input-lg ' %> <br>
+          <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
+          <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
+          </div>
+
+          <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
+
+          <% end %>
+      </div>
+      </div>
+  </div>
+  </div>
+
+</body>
+
+<footer class="light-fade">
+    &copy; 2019 Van Builder. All Rights Reserved.
+</footer>

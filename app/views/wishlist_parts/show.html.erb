@@ -1,2 +1,36 @@
-<h1>WishlistParts#show</h1>
-<p>Find me in app/views/wishlist_parts/show.html.erb</p>
+<head>
+  <link rel="stylesheet" href="/css/individual_wishlist_part.css">
+</head>
+<div id="navbar" class="light-fade">
+  <div class="wrapper">
+
+    <div id="account">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
+      <ul class="dropdown-menu">
+          <li><a href="/logout">Logout</a></li>
+          <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
+    </ul>
+    </div>
+    <nav>
+      <a href="/users/index">Home</a><a href="/parts">My Parts</a><a href="/wishlist_parts">My Wishlist</a><a href="/posts">My Blog</a>
+    </nav>
+  </div>
+</div>
+<body>
+<form class="shadow">
+  <div id="contact"
+    <h2><strong><%= @wishlist_part.manufacturer %> <%= @wishlist_part.name %></strong> </h2>
+    <h4><%= @wishlist_part.description %><br></h4>
+    <h2><strong>Quantity:</strong> <%= @wishlist_part.qty %><br></h2>
+    <img src="<%= @wishlist_part.url %>"></img><br>
+    <h2><strong>Unit Price: </strong>$<%= amount(@wishlist_part.price) %></h2>
+    <h2><strong>Total Price: </strong>$<%= amount((@wishlist_part.price * @wishlist_part.qty)) %> </h2><br>
+    <a href="/wishlist_parts/<%= @wishlist_part.id %>/edit">Edit</a>
+    &nbsp; | &nbsp;
+    <a href="/wishlist_parts/<%= @wishlist_part.id %>/delete">Delete</a>
+  </div>
+</form>
+</body>
+<footer class="light-fade">
+    &copy; 2019 Van Builder. All Rights Reserved.
+</footer>

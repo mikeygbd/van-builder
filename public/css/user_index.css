@@ -245,7 +245,7 @@ h1,h2,h3 {
 
 }
 
-.panel textarea, .well textarea, textarea.form-control
+.panel textarea, .well textarea, .form-control
 {
    reprice: none;
 }
@@ -290,7 +290,7 @@ h1,h2,h3 {
 	padding:0px;
 }
 
-.modal-body textarea.form-control
+.modal-body .form-control
 {
    reprice: none;
    border:0;
