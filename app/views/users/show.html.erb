@@ -163,9 +163,9 @@
 
         <%= form_for Part.new, :class => 'form center-block' do |f| %>
         <div class="form-group">
-        <%= f.text_field :manufacturer, placeholder: "Manufacturer", :class => 'form-control input-lg ' %><br>
-        <%= f.text_field :name, placeholder: "Name", :class => 'form-control input-lg' %><br>
-        <%= f.text_field :price, placeholder: "Price", :class => 'form-control input-lg ' %> <br>
+        <%= f.text_field :manufacturer, placeholder: "Manufacturer", :required => true , :class => 'form-control input-lg ' %><br>
+        <%= f.text_field :name, placeholder: "Name", :required => true , :class => 'form-control input-lg' %><br>
+        <%= f.text_field :price, placeholder: "Price", :required => true , :class => 'form-control input-lg ' %> <br>
         <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
         <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
         </div>
@@ -199,9 +199,9 @@
 
           <%= form_for WishlistPart.new, :class => 'form center-block' do |f| %>
           <div class="form-group">
-          <%= f.text_field :manufacturer, placeholder: "Manufacturer", :class => 'form-control input-lg ' %><br>
-          <%= f.text_field :name, placeholder: "Name", :class => 'form-control input-lg' %><br>
-          <%= f.text_field :price, placeholder: "Price", :class => 'form-control input-lg ' %> <br>
+          <%= f.text_field :manufacturer, placeholder: "Manufacturer", :required => true, :class => 'form-control input-lg' %><br>
+          <%= f.text_field :name, placeholder: "Name", :required => true , :class => 'form-control input-lg' %><br>
+          <%= f.text_field :price, placeholder: "Price", :required => true , :class => 'form-control input-lg ' %> <br>
           <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
           <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
           </div>
@@ -234,9 +234,9 @@
 
             <%= form_for Post.new, :class => 'form center-block' do |f| %>
             <div class="form-group">
-            <%= f.text_field :title, placeholder: "Title", :class => 'form-control input-lg ' %><br>
+            <%= f.text_field :title, placeholder: "Title", :required => true , :class => 'form-control input-lg ' %><br>
             <%= f.text_area :embed, placeholder: "Embed Video", :class => 'form-control input-lg' %><br>
-            <%= f.text_area :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
+            <%= f.text_area :description, placeholder: "Description", :required => true , :class => 'form-control input-lg' %><br>
             </div>
 
             <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
