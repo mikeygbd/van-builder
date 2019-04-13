@@ -37,11 +37,12 @@
     <%= post.embed.html_safe %><br><br>
     <div class="description">
     <h4><%= post.description %></h4>
-    <a data-target="#postModal<%=post.id%>" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a>
+    <a data-target="#postModal" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a>
     <h2><strong>Comments:</strong></h2>
     <% post.comments.each do |comment| %>
     <strong><%= comment.user.email %></strong> said <%= comment.content %><br><br>
 <% end %>
+  <% end %>
 
 
 
@@ -54,8 +55,8 @@
   </div>
 
 
-  <div id="postModal<%=post.id%>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+  <div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -73,7 +74,7 @@
 
             <%= form_for Comment.new, :class => 'form center-block' do |f| %>
             <div class="form-group">
-            <%= f.hidden_field :post_id, :value => post.id %>
+            <%= f.hidden_field :post_id, :value => @p.id %>
 
             <%= f.text_area :content, placeholder: "Content", :class => 'form-control input-lg ' %><br>
 
@@ -81,7 +82,7 @@
 
             <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
 
-            <% end %>
+
             <% end %>
 
         </div>

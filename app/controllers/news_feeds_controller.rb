@@ -3,5 +3,8 @@ class NewsFeedsController < ApplicationController
 
   end
 
+  def show
+  
+  end
 
 end

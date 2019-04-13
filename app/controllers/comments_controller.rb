@@ -11,6 +11,8 @@ class CommentsController < ApplicationController
   def create
     if user_signed_in?
     @comment = Comment.new(comment_params)
+    # @post = Post.find(params[:id])
+    #  @comment.post_id = @post.id
     @comment.user = current_user
     @comment.save
 
