@@ -23,7 +23,7 @@ class VansController < ApplicationController
     @van.url = @url
     @van.user_id = current_user.id
     @van.save
-    redirect_to van_path(@van)
+    redirect_to user_path(current_user)
   else
     redirect_to root_path
     end
@@ -42,7 +42,7 @@ class VansController < ApplicationController
   def destroy
     @van = Van.find(params[:id])
     @van.delete
-    redirect_to vans_path(@vans)
+    redirect_to user_path(current_user)
   end
 
   private

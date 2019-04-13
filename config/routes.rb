@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
-  get 'vans/index'
-  get 'vans/new'
-  get 'vans/show'
-  get 'vans/create'
-  get 'vans/edit'
-  get 'vans/update'
-  get 'vans/destroy'
+
   # get 'news_feeds/index'
   # post 'news_feeds/index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :parts
   resources :posts
   resources :wishlist_parts
+  resources :vans
   resources :sessions
   resources :users
   resources :comments
@@ -20,7 +15,7 @@ Rails.application.routes.draw do
   get '/parts/:id/delete', to: 'parts#destroy'
   get '/wishlist_parts/:id/delete', to: 'wishlist_parts#destroy'
   get '/posts/:id/delete', to: 'posts#destroy'
-
+  get '/vans/:id/delete', to: 'vans#destroy'
   resources :posts do
   resources :comments, only:[:new, :show ]
 end

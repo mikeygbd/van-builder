@@ -45,19 +45,28 @@
                        <div class="col-sm-5 ">
                             <div class="panel panel-default shadow">
                               <div class="panel-heading">
+
+                                <a href="#postModal4" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Your Van</span></a>
+
                                  <h4>Your Van</h4>
                                </div>
                               <div class="panel-thumbnail van"><img src="http://tinyvanbigliving.com/wp-content/uploads/2017/03/logo_03.png" width=250 class="img-responsive"></div>
                               <div class="panel-body">
                                 <p class="lead"> <strong>Welcome, <%= current_user.email %></strong></p>
                                 <div class="van">
-                                <h1><img width=200 src= "<%=current_user.url%>"></h1>
+                                  <% current_user.vans.each do |van| %>
+                                <h1><img width=200 src= "<%=van.url%>"></h1>
+
+                                <p class="lead"><strong>Make:</strong> <%= van.van_make %></p>
+                                <p class="lead"> <strong>Model:</strong> <%= van.van_model %></p>
+                                <p class="lead"> <strong>Year:</strong> <%= van.van_year %></p>
+                                <p class="lead"> <strong>Wheelbase:</strong> <%= van.van_wheelbase %></p>
+                                <p class="lead"> <strong>Color:</strong> <%= van.van_color %></p>
+                                <a href="/vans/<%= van.id %>/edit">Edit</a>
+                                &nbsp; | &nbsp;
+                                <a href="/vans/<%= van.id %>/delete">Delete</a>
+                                <% end %>
                                 </div>
-                                <p class="lead"><strong>Make:</strong> <%= current_user.van_make %></p>
-                                <p class="lead"> <strong>Model:</strong> <%= current_user.van_model %></p>
-                                <p class="lead"> <strong>Year:</strong> <%= current_user.van_year %></p>
-                                <p class="lead"> <strong>Wheelbase:</strong> <%= current_user.van_wheelbase %></p>
-                                <p class="lead"> <strong>Color:</strong> <%= current_user.van_color %></p>
                               </div>
                             </div>
 
@@ -247,6 +256,42 @@
         </div>
     </div>
     </div>
+
+    <div id="postModal4" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          Add Your Van Info
+          </div>
+          <div class="modal-body">
+              <!-- <form action="/posts/new" method=POST class="form center-block">
+                <div class="form-group">
+                  <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
+                  <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
+                  <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
+                </div>
+                <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+              </form> -->
+
+              <%= form_for Van.new, :class => 'form center-block' do |f| %>
+              <div class="form-group">
+              <%= f.text_field :van_make, placeholder: "Make", :required => true, :class => 'form-control input-lg ' %><br>
+              <%= f.text_field :van_model, placeholder: "Model", :required => true, :class => 'form-control input-lg' %><br>
+              <%= f.text_field :van_year, placeholder: "Year", :required => true , :class => 'form-control input-lg' %><br>
+              <%= f.text_field :van_color, placeholder: "Color", :required => true , :class => 'form-control input-lg' %><br>
+              <%= f.text_field :van_wheelbase, placeholder: "Wheelbase", :required => true , :class => 'form-control input-lg' %><br>
+
+              </div>
+
+              <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
+
+              <% end %>
+
+          </div>
+          </div>
+      </div>
+      </div>
 
 <footer>
     &copy; 2019 Van Builder. All Rights Reserved.

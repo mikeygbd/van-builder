@@ -1,2 +1,44 @@
-<h1>Vans#edit</h1>
-<p>Find me in app/views/vans/edit.html.erb</p>
+
+<html>
+<head>
+  <link rel="stylesheet" href="/css/edit_part.css">
+</head>
+<div id="navbar" class="light-fade">
+  <div class="wrapper">
+
+    <div id="account">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
+      <ul class="dropdown-menu">
+          <li><a href="/logout">Logout</a></li>
+          <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
+    </ul>
+    </div>
+  <%= render 'layouts/nav' %>
+  </div>
+</div>
+<body>
+  <div class="container">
+    <div id="contact"
+    <h2> <strong><u>Edit Van</u></strong> </h2>
+    <h3><strong>Make:</strong> <%= @van.van_make %><br></h3>
+    <h3><strong>Model:</strong> <%= @van.van_model %></h3>
+    <h3><strong>Year:</strong> <%= @van.van_year %></h3>
+    <h3><strong>Color:</strong> <%= @van.van_color %></h3>
+    <h3><strong>Wheelbase:</strong> <%= @van.van_wheelbase %></h3>
+      <img src="<%= @van.url %>"></img>
+      <form action="/vans/<%= @van.id %>" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="PATCH">
+      <input type="text" placeholder= "Make:" name="van_make" value="<%= @van.van_make %>">
+      <input type="text" placeholder= "Model:"name="van_model" value="<%= @van.van_model %>">
+      <input type="text" placeholder= "Year:" name="year_year" value="<%= @van.van_year %>">
+      <input type="text" placeholder= "Color:" name="van_color" value="<%= @van.van_color %>">
+      <input type="text" placeholder= "Wheelbase:" name="van_wheelbase" value="<%= @van.van_wheelbase %>">
+      <br><br>
+      <button type="update" value="Update" id="update">Update</button>
+    </form>
+    </div>
+  </div>
+</body>
+<footer>
+    &copy; 2019 Van Builder. All Rights Reserved.
+</footer>
