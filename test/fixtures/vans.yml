@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  van_year: 1
+  van_make: MyString
+  van_model: MyString
+  van_color: MyString
+  van_wheelbase: 1
+  url: MyString
+
+two:
+  van_year: 1
+  van_make: MyString
+  van_model: MyString
+  van_color: MyString
+  van_wheelbase: 1
+  url: MyString

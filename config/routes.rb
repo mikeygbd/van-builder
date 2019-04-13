@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'vans/index'
+  get 'vans/new'
+  get 'vans/show'
+  get 'vans/create'
+  get 'vans/edit'
+  get 'vans/update'
+  get 'vans/destroy'
   # get 'news_feeds/index'
   # post 'news_feeds/index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

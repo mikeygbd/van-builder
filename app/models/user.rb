@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   has_many :parts, -> {distinct}
   has_many :wishlist_parts, -> {distinct}
-  has_many :posts, -> {distinct} 
+  has_many :posts, -> {distinct}
   has_many :comments, through: :posts
+  has_one :van
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google]
