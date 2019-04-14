@@ -41,11 +41,11 @@
                    <% post.comments.each do |comment| %>
                     <%@c = comment  %>
                    <div class="list-group-item">
-                   <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %><a data-target="#postModal<%= @c.id %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Reply</span></a>
+                   <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %><a data-target="#postModal<%=@c.id  %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Reply</span></a>
                    <br>
                    <% comment.replies.each do |reply| %>
                    <strong><%= link_to reply.user.email, user_path(reply.user) %></strong> - <%= reply.content %>
-                   <% end %>
+                    <% end %>
                    </div>
 
                    <% end %>
@@ -57,8 +57,6 @@
       </form>
 
    </div>
-
-
 
    <div id="postModal<%= @c.id %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -78,15 +76,20 @@
                   </form> -->
                <%= form_for Reply.new, :class => 'form center-block' do |f| %>
                <div class="form-group">
-                  <%= f.hidden_field :comment_id, :value => @c.id %>
+                  <%= f.hidden_field :post_id, :value => @c.id %>
                   <%= f.text_area :content, placeholder: "Content", :required => true, :class => 'form-control input-lg ' %><br>
                </div>
                <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
                <% end %>
+
             </div>
+
          </div>
       </div>
    </div>
+
+
+
 
 
    <div id="postModal<%= post.id %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">

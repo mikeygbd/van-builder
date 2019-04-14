@@ -419,6 +419,10 @@ border-top: 1px solid #ccc;
   float: right;
 }
 
+.list-group {
+  border-radius: 12px;
+}
+
 .img1 {
 
   width: 30px;
