@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :wishlist_parts, -> {distinct}
   has_many :posts, -> {distinct}
   has_many :comments, through: :posts
+  has_many :replies, through: :posts
   has_many :vans
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

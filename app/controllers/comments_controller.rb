@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+before_action :authenticate_user!
   def index
     @comments = Comment.all
 
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.save
 
-    redirect_to news_feeds_path
+    redirect_to news_feeds_path, notice: "Your comment was successfully posted."
   else
     redirect_to root_path
     end
