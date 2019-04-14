@@ -20,6 +20,7 @@ class WishlistPartsController < ApplicationController
     @url = PartsScraper.image_url
     @wishlist_part.url = @url
     @wishlist_part.user_id = current_user.id
+    @wishlist_part.user = current_user
     @wishlist_part.save
     redirect_to wishlist_part_path(@wishlist_part)
   else

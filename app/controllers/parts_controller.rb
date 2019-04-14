@@ -23,6 +23,7 @@ class PartsController < ApplicationController
     @url = PartsScraper.image_url
     @part.url = @url
     @part.user_id = current_user.id
+    @part.user = current_user
     @part.save
     redirect_to part_path(@part)
   else

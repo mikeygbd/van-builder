@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     if user_signed_in?
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.user = current_user
     @post.save
     redirect_to post_path(@post)
   else

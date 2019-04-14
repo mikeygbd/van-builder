@@ -22,6 +22,7 @@ class VansController < ApplicationController
     @url = VanScraper.image_url
     @van.url = @url
     @van.user_id = current_user.id
+    @van.user = current_user
     @van.save
     redirect_to user_path(current_user)
   else

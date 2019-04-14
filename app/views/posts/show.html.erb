@@ -27,14 +27,23 @@
     <div class="description">
     <h4><%= @post.description %></h4>
     </div>
-    <h2>Comments:</h2>
-    <% @post.comments.each do |comment| %>
-    <%= link_to comment.user.email, user_path(comment.user) %> said: <%= comment.content %>
-    <% end %>
     <br>
     <a href="/posts/<%= @post.id %>/edit">Edit</a>
     &nbsp; | &nbsp;
     <a href="/posts/<%= @post.id %>/delete">Delete</a>
+    <h2><strong><u>Comments</u></strong> </h2>
+    <div class="panel-body">
+      <div class="list-group shadow">
+        <% @post.comments.each do |comment| %>
+        <div class="list-group-item">
+        <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> said <%= comment.content %>
+          <br>
+        </div>
+        <% end %>
+        </div>
+        </div>
+
+
   </div>
 </form>
 </body>

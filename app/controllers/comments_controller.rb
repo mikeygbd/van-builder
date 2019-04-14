@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
 
+  def index
+    @comments = Comment.all
+
+  end
   def new
     @comment = Comment.new
   end
@@ -19,7 +23,13 @@ class CommentsController < ApplicationController
     redirect_to news_feeds_path
   else
     redirect_to root_path
+    end
   end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.delete
+    redirect_to post_path(@post)
   end
 
   private

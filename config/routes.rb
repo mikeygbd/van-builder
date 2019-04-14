@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/wishlist_parts/:id/delete', to: 'wishlist_parts#destroy'
   get '/posts/:id/delete', to: 'posts#destroy'
   get '/vans/:id/delete', to: 'vans#destroy'
+  get '/comments/:id/delete', to: 'comments#destroy'
   resources :posts do
   resources :comments, only:[:new, :show ]
 end

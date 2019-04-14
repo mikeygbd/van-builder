@@ -1,100 +1,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="/css/responsive.css">
-
 <head>
-  <link rel="stylesheet" href="/css/posts.css">
-  <link rel="stylesheet" href="/css/new_form.css">
+   <link rel="stylesheet" href="/css/posts.css">
+   <link rel="stylesheet" href="/css/new_form.css">
 </head>
 <div id="navbar" class="light-fade">
-  <div class="wrapper">
-
-    <div id="account">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
-      <ul class="dropdown-menu">
-          <li><a href="/logout">Logout</a></li>
-          <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
-    </ul>
-    </div>
-    <%= render "layouts/nav" %>
-
-  </div>
+   <div class="wrapper">
+      <div id="account">
+         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/img/user.png" width=30 alt="user"></a>
+         <ul class="dropdown-menu">
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/users/<%= current_user.id %>/delete">Delete Account</a></li>
+         </ul>
+      </div>
+      <%= render "layouts/nav" %>
+   </div>
 </div>
 <body>
-    <h1><strong>News Feed</strong></h1>
-    <div class="posts">
+   <h1><strong>News Feed</strong></h1>
+   <div class="posts">
+      <% Post.all.each do |post| %>
+      <form class="post shadow">
+         <div id="contact">
+            <%@p = post %>
+            <h2><strong><%= post.title %></strong> </h2>
+            <%  @user = User.find(post.user_id) %>
+            <h2>Posted by: <%= @user.email %> </h2>
+            <br><br>
+            <%= post.embed.html_safe %><br><br>
+            <div class="description">
+               <h4><%= post.description %></h4>
+               <br>
+               <div>
+               <a data-target="#postModal<%= post.id %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a>
+               <h2><strong><u>Comments</u></strong> </h2>
+                </div>
+               <div class="panel-body">
+                 <div class="list-group shadow">
+                   <% post.comments.each do |comment| %>
+                   <div class="list-group-item">
+                   <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %>
+                   <br>
+                   <!-- <a href="/posts/<%= post.id %>/edit">Reply</a>
+                   &nbsp; | &nbsp;
+                   <a href="/comments/<%= post.id %>/delete">Delete</a> -->
 
-<% Post.all.each do |post| %>
-
-
-<form class="post shadow">
-  <div id="contact">
-
-    <%@p = post %>
-
-    <h2><strong><%= post.title %></strong> </h2>
-    <%  @user = User.find(post.user_id) %>
-    <h2>Posted by: <%= @user.email %> </h2><br><br>
-    <%= post.embed.html_safe %><br><br>
-    <div class="description">
-    <h4><%= post.description %></h4>
-    <a data-target="#postModal" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a>
-    <h2><strong>Comments:</strong></h2>
-    <% post.comments.each do |comment| %>
-    <strong><%= comment.user.email %></strong> said <%= comment.content %><br><br>
-  <% end %>
-
-
-
-    </div>
-    <br>
-  </div>
-</form>
-
-
-  </div>
-
-
-  <div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  			Add Comment
-        </div>
-        <div class="modal-body">
-            <!-- <form action="/posts/new" method=POST class="form center-block" autocomplete="on">
-              <div class="form-group">
-                <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
-                <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
-                <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
-              </div>
-              <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-            </form> -->
-
-            <%= form_for Comment.new, :class => 'form center-block' do |f| %>
-            <div class="form-group">
-            <%= f.hidden_field :post_id, :value => @p.id %>
-
-            <%= f.text_area :content, placeholder: "Content", :required => true, :class => 'form-control input-lg ' %><br>
-
+                   </div>
+                   <% end %>
+                 </div>
+               </div>
             </div>
-
-            <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
-
-            <% end %>
-
-            <% end %>
-
-        </div>
-        </div>
-    </div>
-    </div>
-  </div>
-
-
-
+            <br>
+         </div>
+      </form>
+   </div>
+   <div id="postModal<%= post.id %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+               Add Comment
+            </div>
+            <div class="modal-body">
+               <!-- <form action="/posts/new" method=POST class="form center-block" autocomplete="on">
+                  <div class="form-group">
+                    <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
+                    <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
+                    <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
+                  </div>
+                  <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+                  </form> -->
+               <%= form_for Comment.new, :class => 'form center-block' do |f| %>
+               <div class="form-group">
+                  <%= f.hidden_field :post_id, :value => post.id %>
+                  <%= f.text_area :content, placeholder: "Content", :required => true, :class => 'form-control input-lg ' %><br>
+               </div>
+               <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
+               <% end %>
+            </div>
+         </div>
+      </div>
+   </div>
+   <% end %>
 </body>
-
 <footer class="light-fade">
-    &copy; 2019 Van Builder. All Rights Reserved.
+   &copy; 2019 Van Builder. All Rights Reserved.
 </footer>
