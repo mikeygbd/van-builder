@@ -368,6 +368,19 @@ font-size: 12px;
 text-align: center;
 line-height: 30px;
 }
+h5 {
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font: 1em "Trebuchet MS", Arial, sans-serif;
+  padding: 10px;
+  border: solid #000 1px;
+  background: #333;
+  margin: 50px 170px 50px;
+  radius: 50px;
+  border-radius: 12px;
+
+}
 h2 {
  font-size: 1.1em;
 }
@@ -380,6 +393,7 @@ padding: 10px;
 border: solid #000 1px;
 background: #333;
 margin: 50px 170px 50px;
+border-radius: 12px;
 }
 .parts {
 margin-bottom: 2vh;

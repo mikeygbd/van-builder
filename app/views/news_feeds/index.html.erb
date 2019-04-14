@@ -26,14 +26,15 @@
             <h2><strong><%= post.title %></strong> </h2>
             <%  @user = User.find(post.user_id) %>
             <h2>Posted by: <%= @user.email %> </h2>
+            <p>Created on: <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %></p>
             <br><br>
             <%= post.embed.html_safe %><br><br>
             <div class="description">
                <h4><%= post.description %></h4>
                <br>
                <div>
-               <a data-target="#postModal<%= post.id %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a>
-               <h2><strong><u>Comments</u></strong> </h2>
+               <h5><strong><u>Comments</u></strong><a data-target="#postModal<%= post.id %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a>
+</h5>
                 </div>
                <div class="panel-body">
                  <div class="list-group shadow">

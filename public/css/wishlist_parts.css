@@ -424,6 +424,7 @@ font: 1.8em "Trebuchet MS", Arial, sans-serif;
 padding: 10px 346px 10px;
 border: solid #000 1px;
 background: #333;
+border-radius: 12px;
 }
 h4 {
 font-size: 12px;
@@ -441,6 +442,7 @@ padding: 10px;
 border: solid #000 1px;
 background: #333;
 margin: 50px 170px 50px;
+border-radius: 12px;
 }
 .parts {
 margin-bottom: 2vh;
