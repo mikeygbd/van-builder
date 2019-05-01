@@ -1,0 +1,18 @@
+<div>
+<h5><strong><u>Comments</u></strong>
+</h5>
+ </div>
+<div class="panel-body">
+  <div class="list-group shadow">
+    <% @comments.each do |comment| %>
+     <%@c = comment  %>
+    <div class="list-group-item">
+    <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %><a data-target="#postModal<%=@c.id  %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Reply</span></a>
+    <br>
+    <% comment.replies.each do |reply| %>
+    <strong><%= link_to reply.user.email, user_path(reply.user) %></strong> - <%= reply.content %>
+     <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

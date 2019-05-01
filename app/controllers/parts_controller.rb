@@ -2,8 +2,12 @@ class PartsController < ApplicationController
 
  # skip_before_action :verify_authenticity_token
   def index
-    @parts = Part.all
+    @parts = current_user.parts.order_by_price
+  end
+  def all_index
 
+    @parts = Part.order_by_price
+    render :index
   end
 
   def new

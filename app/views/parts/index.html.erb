@@ -11,7 +11,7 @@
     <h1><strong>My Parts</strong><a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part</span></a></h1>
     <div class="parts">
 <% total = [] %>
-<% current_user.parts.each do |part| %>
+<% @parts.each do |part| %>
 <% total << (part.price * part.qty) %>
 <form class="partform shadow">
   <div id="contact">

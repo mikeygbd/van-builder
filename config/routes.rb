@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # post 'news_feeds/index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :parts
-  resources :posts
+
   resources :wishlist_parts
   resources :vans
   resources :sessions
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :news_feeds
   resources :replies
+  get '/all-parts', to: 'parts#all_index'
   get '/users/:id/delete', to: 'users#destroy'
   get '/parts/:id/delete', to: 'parts#destroy'
   get '/wishlist_parts/:id/delete', to: 'wishlist_parts#destroy'
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   get '/vans/:id/delete', to: 'vans#destroy'
   get '/comments/:id/delete', to: 'comments#destroy'
   resources :posts do
-  resources :comments, only:[:new, :show ]
+  resources :comments, only:[:index, :new, :show ]
 end
 
   # Routes for Google authentication

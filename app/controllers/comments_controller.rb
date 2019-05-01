@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
 before_action :authenticate_user!
   def index
-    @comments = Comment.all
-
+    if params[:post_id]
+      @comments = Post.find(params[:post_id]).comments
+    else
+      @comments = Comment.all
+    end
   end
   def new
     @comment = Comment.new
