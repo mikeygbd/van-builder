@@ -65,7 +65,15 @@
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                Reply
             </div>
-            <div class="modal-body">          
+            <div class="modal-body">
+               <!-- <form action="/posts/new" method=POST class="form center-block" autocomplete="on">
+                  <div class="form-group">
+                    <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
+                    <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
+                    <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
+                  </div>
+                  <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+                  </form> -->
                <%= form_for Reply.new, :class => 'form center-block' do |f| %>
                <div class="form-group">
                   <%= f.hidden_field :post_id, :value => @c.id %>
@@ -92,6 +100,14 @@
                Add Comment
             </div>
             <div class="modal-body">
+               <!-- <form action="/posts/new" method=POST class="form center-block" autocomplete="on">
+                  <div class="form-group">
+                    <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
+                    <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
+                    <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
+                  </div>
+                  <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+                  </form> -->
                <%= form_for Comment.new, :class => 'form center-block' do |f| %>
                <div class="form-group">
                   <%= f.hidden_field :post_id, :value => post.id %>
