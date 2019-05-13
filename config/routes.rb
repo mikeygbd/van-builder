@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/posts/:id/delete', to: 'posts#destroy'
   get '/vans/:id/delete', to: 'vans#destroy'
   get '/comments/:id/delete', to: 'comments#destroy'
+  get '/posts/:id/description', to: 'posts#description'
   resources :posts do
   resources :comments, only:[:index, :new, :show ]
 end

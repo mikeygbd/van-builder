@@ -29,12 +29,22 @@
             <p>Created on: <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %></p>
             <br><br>
             <%= post.embed.html_safe %><br><br>
-            <div class="description">
-               <h4><%= post.description %></h4>
+            <div id="description-<%= post.id %>">
+               <div id="body-<%= post.id %>"><h4><%= truncate post.description %></h4></div>
+               <button class="js-more" data-id="<%= post.id %>">More...</button>
+               <script type="text/javascript" charset="utf-8">
+                $(function () {
+                  $(".js-more").on('click', function() {
+                    let id = $(this).data("id");
+                    $.get("/posts/" + id + "/body", function(data) {
+                      $("#description-" + id).text(data);
+                    });
+                  });
+                });
+              </script>
                <br>
                <div>
-               <h5><strong><u>Comments</u></strong><a data-target="#postModal<%= post.id %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a>
-</h5>
+               <h5><strong><u>Comments</u></strong><a data-target="#postModal<%= post.id %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a></h5>
                 </div>
                <div class="panel-body">
                  <div class="list-group shadow">

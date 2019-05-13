@@ -34,6 +34,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'thin'
+gem 'active_model_serializers'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
