@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resources :vans
   resources :sessions
   resources :users
-  resources :comments
   resources :news_feeds
   resources :replies
   get '/all-parts', to: 'parts#all_index'
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
   get '/comments/:id/delete', to: 'comments#destroy'
   get '/posts/:id/description', to: 'posts#description'
   resources :posts do
-  resources :comments, only:[:index, :new, :show ]
+  resources :comments
 end
 
   # Routes for Google authentication
