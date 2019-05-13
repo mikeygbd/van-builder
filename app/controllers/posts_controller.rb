@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def create
     if user_signed_in?
-    @post = Post.new(post_params)
+    @post = Post.create(post_params)
     @post.user_id = current_user.id
     @post.user = current_user
     @post.save
