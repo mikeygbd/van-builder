@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   # post 'news_feeds/index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :parts
-  resources :comments
   resources :wishlist_parts
   resources :vans
   resources :sessions
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
   get '/vans/:id/delete', to: 'vans#destroy'
   get '/comments/:id/delete', to: 'comments#destroy'
   get '/posts/:id/description', to: 'posts#description'
+
+  get 'posts/:id/post_data', to: 'posts#post_data'
   resources :posts do
   resources :comments do
     resources :replies
