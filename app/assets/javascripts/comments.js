@@ -10,3 +10,10 @@ $(document).on('turbolinks:load', function () {
           'post_id': f['comment[post_id]'].value
         }
       }
+      console.log('submitted')
+      //$(`#${e.target.parentElement.parentElement.parentElement.parentElement.id}`).modal('hide')
+      $('.modal').removeClass('in');
+                  $('.modal').attr("aria-hidden","true");
+                  $('.modal').css("display", "none");
+                  $('.modal-backdrop').remove();
+                  $('body').removeClass('modal-open');
