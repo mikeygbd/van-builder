@@ -16,16 +16,16 @@ before_action :authenticate_user!
   end
 
   def create
-    if user_signed_in?
-    @comment = Comment.new(comment_params)
-    # @post = Post.find(params[:id])
-    #  @comment.post_id = @post.id
-    @comment.user = current_user
-    @comment.save
 
-    redirect_to news_feeds_path, notice: "Your comment was successfully posted."
-  else
-    redirect_to root_path
+    if user_signed_in?
+      @comment = Comment.new(comment_params)
+      # @post = Post.find(params[:id])
+      #  @comment.post_id = @post.id
+      @comment.user = current_user
+       @comment.save
+       render json: @comment
+    else
+      redirect_to root_path
     end
   end
 
