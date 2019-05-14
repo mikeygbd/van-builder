@@ -1,3 +1,4 @@
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="/css/responsive.css">
 <head>
@@ -23,39 +24,38 @@
       <form class="post shadow">
          <div id="contact">
             <%@p = post %>
-            <h2><strong><%= post.title %></strong> </h2>
+            <h2><strong><%= post.id %>: <%=link_to  post.title, post_path(post) %></strong> </h2>
             <%  @user = User.find(post.user_id) %>
             <h2>Posted by: <%= @user.email %> </h2>
             <p>Created on: <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %></p>
             <br><br>
             <%= post.embed.html_safe %><br><br>
             <div id="description-<%= post.id %>">
-               <div id="body-<%= post.id %>"><h4><%= truncate post.description %></h4></div>
-               <button class="js-more" data-id="<%= post.id %>">More...</button>
-               <script type="text/javascript" charset="utf-8">
-                $(function () {
-                  $(".js-more").on('click', function() {
-                    let id = $(this).data("id");
-                    $.get("/posts/" + id + "/body", function(data) {
-                      $("#description-" + id).text(data);
-                    });
-                  });
-                });
-              </script>
+               <div>
+                  <% if post.description.length > 150 %>
+                    <%= truncate(post.description, length: 150) %>
+                    <%= link_to '...Read more', '', class: "read-more-#{post.id}" %>
+                    <script>
+                      $('.read-more-<%= post.id %>').on('click', function(e) {
+                        e.preventDefault()
+                        $(this).parent().html('<%= escape_javascript post.description %>')
+                      })
+                    </script>
+                  <% else %>
+                    <%= post.description %>
+                  <% end %>
+                </div>
                <br>
                <div>
                <h5><strong><u>Comments</u></strong><a data-target="#commentModal<%= post.id %>" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Comment</span></a></h5>
                 </div>
                <div class="panel-body">
-                 <div class="list-group shadow">
+                 <div class="list-group shadow" data-id="<%= post.id %>">
                    <% post.comments.each do |comment| %>
                     <%@c = comment  %>
-                   <div class="list-group-item">
-                   <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %>
-                   <br>
-
+                   <div class="comments list-group-item">
+                       <strong id="user_email"><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %><br>
                    </div>
-
                    <% end %>
                  </div>
                </div>
@@ -63,7 +63,6 @@
             <br>
          </div>
       </form>
-
    </div>
 
 
@@ -88,10 +87,10 @@
                   </div>
                   <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
                   </form> -->
-               <%= form_for  Comment.new, :class => 'form center-block' do |f| %>
+               <%= form_for([post, Comment.new], :id => 'new_comment', :class => 'form center-block') do |f| %>
                <div class="form-group">
                   <%= f.hidden_field :post_id, :value => post.id %>
-                  <%= f.text_area :content, placeholder: "Content", :required => true, :class => 'form-control input-lg ' %><br>
+                  <%= f.text_area :content, placeholder: "Content", :required => true, :id => 'comment_content', :class => 'form-control input-lg' %><br>
                </div>
                <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
                <% end %>
