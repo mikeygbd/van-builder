@@ -11,8 +11,6 @@ $(document).on('turbolinks:load', function () {
           'post_id': f['comment[post_id]'].value
         }
       }
-      console.log('submitted')
-      //$(`#${e.target.parentElement.parentElement.parentElement.parentElement.id}`).modal('hide')
       $('.modal').removeClass('in');
                   $('.modal').attr("aria-hidden","true");
                   $('.modal').css("display", "none");
@@ -27,13 +25,9 @@ console.log(url)
     success: function(response, e){
       var comments = $(`[data-id="${response.post_id}"]`)
 
-      
-      // User.find(response.user_id)
+
       var fullComment = `<div class="comments list-group-item"><strong><a href="/users/${response.user_id}">${response.user.email}</a></strong> - ${response.content}</div>`
       comments.append(fullComment)
-      // debugger
-      // <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %><br>
-
     }
   });
   f.reset()

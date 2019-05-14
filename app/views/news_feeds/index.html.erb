@@ -24,7 +24,7 @@
       <form class="post shadow">
          <div id="contact">
             <%@p = post %>
-            <h2><strong><%= post.id %>: <%=link_to  post.title, post_path(post) %></strong> </h2>
+            <h2><strong><%=link_to  post.title, post_path(post) %></strong> </h2>
             <%  @user = User.find(post.user_id) %>
             <h2>Posted by: <%= @user.email %> </h2>
             <p>Created on: <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %></p>
@@ -79,14 +79,6 @@
                Add Comment
             </div>
             <div class="modal-body">
-               <!-- <form action="/posts/new" method=POST class="form center-block" autocomplete="on">
-                  <div class="form-group">
-                    <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
-                    <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
-                    <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
-                  </div>
-                  <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-                  </form> -->
                <%= form_for([post, Comment.new], :id => 'new_comment', :class => 'form center-block') do |f| %>
                <div class="form-group">
                   <%= f.hidden_field :post_id, :value => post.id %>
