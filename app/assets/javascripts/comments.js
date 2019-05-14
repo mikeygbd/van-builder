@@ -1,3 +1,4 @@
+
 $(document).on('turbolinks:load', function () {
   $("form").toArray().forEach(f => {
     $(f).on("submit", function(e){
@@ -26,3 +27,16 @@ console.log(url)
     success: function(response, e){
       var comments = $(`[data-id="${response.post_id}"]`)
 
+      
+      // User.find(response.user_id)
+      var fullComment = `<div class="comments list-group-item"><strong><a href="/users/${response.user_id}">${response.user.email}</a></strong> - ${response.content}</div>`
+      comments.append(fullComment)
+      // debugger
+      // <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %><br>
+
+    }
+  });
+  f.reset()
+})
+  })
+})
