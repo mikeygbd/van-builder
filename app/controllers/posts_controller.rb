@@ -5,6 +5,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json:
+      @post.to_json}
+    end
   end
 
   def new
@@ -37,6 +42,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.delete
     redirect_to posts_path(@posts)
+  end
+
+  def post_data
+    post = Post.find(params[:id])
+    render json: post.to_json(only: [:title, :description, :id])
   end
 
   private
