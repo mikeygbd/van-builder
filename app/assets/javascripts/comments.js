@@ -17,3 +17,12 @@ $(document).on('turbolinks:load', function () {
                   $('.modal').css("display", "none");
                   $('.modal-backdrop').remove();
                   $('body').removeClass('modal-open');
+console.log(data)
+console.log(url)
+      $.ajax({
+    type: "POST",
+    url: url,
+    data: data,
+    success: function(response, e){
+      var comments = $(`[data-id="${response.post_id}"]`)
+
