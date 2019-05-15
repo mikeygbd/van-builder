@@ -1,6 +1,6 @@
 
 $(document).on('turbolinks:load', function () {
-  $("form").toArray().forEach(f => {
+  $("form#new_comment").toArray().forEach(f => {
     $(f).on("submit", function(e){
       e.preventDefault()
       url = this.action
@@ -23,10 +23,10 @@ console.log(url)
     url: url,
     data: data,
     success: function(response, e){
-      var comments = $(`[data-id="${response.post_id}"]`)
+      const comments = $(`[data-id="${response.post_id}"]`)
 
 
-      var fullComment = `<div class="comments list-group-item"><strong><a href="/users/${response.user_id}">${response.user.email}</a></strong> - ${response.content}</div>`
+      let fullComment = `<div class="comments list-group-item"><strong><a href="/users/${response.user_id}">${response.user.email}</a></strong> - ${response.content}</div>`
       comments.append(fullComment)
     }
   });
