@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function () {
     data: data,
     success: function(response){
       const posts = $(`.posts`)
-      const homePosts = $('#homePosts')
+      const homePosts = $('.homePosts')
       let fullPost = `<div class="post shadow"><div id="contact"><h2><strong>${response.title}</strong> </h2><br><br>
     <p>Created on: ${response.user.created_at}</p>
     <br>
