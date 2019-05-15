@@ -133,7 +133,7 @@
                               <a href="#postModal3" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Post</span></a>
                                <h4>Your Blog Posts</h4>
                              </div>
-                              <div class="panel-body">
+                              <div id="homePosts" class="panel-body">
                                 <div class="list-group shadow">
                                   <% current_user.posts.each do |post| %>
                                   <a href= '/posts/<%= post.id %>' role="button" class="list-group-item"> <div class="lead"><%=post.title%><br><br> <%=post.embed.html_safe%></div></a>
@@ -244,7 +244,7 @@
               <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
             </form> -->
 
-            <%= form_for Post.new, :class => 'form center-block' do |f| %>
+            <%= form_for Post.new, :id => 'new_post', :class => 'form center-block' do |f| %>
             <div class="form-group">
             <%= f.text_field :title, placeholder: "Title", :required => true , :class => 'form-control input-lg ' %><br>
             <%= f.text_area :embed, placeholder: "Embed Video", :class => 'form-control input-lg' %><br>
