@@ -31,9 +31,9 @@
             <br><br>
             <%= post.embed.html_safe %><br><br>
             <div id="description-<%= post.id %>">
-               <div>
-                  <% if post.description.length > 150 %>
-                    <%= truncate(post.description, length: 150) %>
+
+                  <% if post.description.length > 500 %>
+                    <%= truncate(post.description, length: 500) %>
                     <%= link_to '...Read more', '', class: "read-more-#{post.id}" %>
                     <script>
                       $('.read-more-<%= post.id %>').on('click', function(e) {
