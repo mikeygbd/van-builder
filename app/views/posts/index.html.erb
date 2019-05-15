@@ -26,13 +26,16 @@
 
 <form class="post shadow">
   <div id="contact">
+
     <h2><strong><%= post.title %></strong> </h2><br><br>
     <p>Created on: <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %></p>
+
     <br>
     <%= post.embed.html_safe %><br><br>
     <div class="description">
     <h4><%= post.description %></h4>
     </div>
+
     <br>
     <a href="/posts/<%= post.id %>/edit">Edit</a>
     &nbsp; | &nbsp;
@@ -42,7 +45,7 @@
     <div class="panel-body">
       <div class="list-group shadow">
         <% post.comments.each do |comment| %>
-        <div class="list-group-item">
+        <div class="comments list-group-item">
         <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %>
         <br>
         <!-- <a href="/posts/<%= post.id %>/edit">Reply</a>
@@ -67,16 +70,7 @@
   			Add Post
         </div>
         <div class="modal-body">
-            <!-- <form action="/posts/new" method=POST class="form center-block" autocomplete="on">
-              <div class="form-group">
-                <textarea class="form-control input-lg" name = "title" autofocus="" placeholder="Title" required></textarea>
-                <textarea class="form-control input-lg" name = "embed" autofocus="" placeholder="Video Embed"></textarea>
-                <textarea class="form-control input-lg" name = "description" rows="8" cols="80" autofocus="" placeholder="Description" required></textarea>
-              </div>
-              <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-            </form> -->
-
-            <%= form_for Post.new, :class => 'form center-block' do |f| %>
+            <%= form_for Post.new, :id => 'new_post', :class => 'form center-block' do |f| %>
             <div class="form-group">
             <%= f.text_field :title, placeholder: "Title", :class => 'form-control input-lg ' %><br>
             <%= f.text_area :embed, placeholder: "Embed Video", :class => 'form-control input-lg' %><br>
