@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.user = current_user
     @post.save
-    redirect_to post_path(@post)
+    render json: @post
   else
     redirect_to root_path
     end
