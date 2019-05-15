@@ -29,7 +29,7 @@ class PartsController < ApplicationController
     @part.user_id = current_user.id
     @part.user = current_user
     @part.save
-    redirect_to part_path(@part)
+    render json: @part
   else
     redirect_to root_path
     end
