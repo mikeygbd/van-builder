@@ -20,6 +20,7 @@
 </div>
 <body>
   <h1><strong>My Wishlist</strong><a href="#postModal2" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part</span></a></h1>
+<div class="wishlistparts">
 <% total = [] %>
 <% current_user.wishlist_parts.each do |wishlist_part| %>
 <% total << (wishlist_part.price * wishlist_part.qty) %>
@@ -36,6 +37,7 @@
   </div>
 </form>
 <% end %>
+</div>
 
 <div class="total">
 <h3> <strong>Wishlist Total:</strong> $<%= amount(total.inject(0, :+)) %> </h3>
@@ -49,18 +51,7 @@
       Add Part To Wishlist
       </div>
       <div class="modal-body">
-          <!-- <form action="/wishlist_parts/new" method=POST class="form center-block">
-            <div class="form-group">
-              <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
-              <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
-              <textarea class="form-control input-lg" name = "price" autofocus="" placeholder="Price" required></textarea>
-              <textarea class="form-control input-lg" name = "qty" autofocus="" placeholder="Quantity" required>1</textarea>
-              <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
-            </div>
-            <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-          </form> -->
-
-          <%= form_for WishlistPart.new, :class => 'form center-block' do |f| %>
+          <%= form_for WishlistPart.new, :id => 'new_wishlist_part', :class => 'form center-block' do |f| %>
           <div class="form-group">
           <%= f.text_field :manufacturer, placeholder: "Manufacturer", :class => 'form-control input-lg ' %><br>
           <%= f.text_field :name, placeholder: "Name", :class => 'form-control input-lg' %><br>
