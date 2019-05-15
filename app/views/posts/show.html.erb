@@ -1,5 +1,7 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="/css/responsive.css">
 <head>
-  <link rel="stylesheet" href="/css/individual_post.css">
+  <link rel="stylesheet" href="/css/posts.css">
 </head>
 <header>
   <div id="navbar" class="light-fade">
@@ -31,7 +33,7 @@
     <a href="/posts/<%= @post.id %>/edit">Edit</a>
     &nbsp; | &nbsp;
     <a href="/posts/<%= @post.id %>/delete">Delete</a>
-    <h2><strong><u>Comments</u></strong> </h2>
+    <h5><strong><u>Comments</u></strong> </h5>
     <div class="panel-body">
       <div class="list-group shadow">
         <% @post.comments.each do |comment| %>
