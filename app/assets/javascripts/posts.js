@@ -29,7 +29,7 @@ $(document).on('turbolinks:load', function () {
     success: function(response){
       const posts = $(`.posts`)
       const homePosts = $('#homePosts')
-      let fullPost = `<form class="post shadow"><div id="contact"><h2><strong>${response.title}</strong> </h2><br><br>
+      let fullPost = `<div class="post shadow"><div id="contact"><h2><strong>${response.title}</strong> </h2><br><br>
     <p>Created on: ${response.user.created_at}</p>
     <br>
     ${response.embed}<br><br>
@@ -40,10 +40,7 @@ $(document).on('turbolinks:load', function () {
     <a href="/posts/${response.id}/edit">Edit</a>
     &nbsp; | &nbsp;
     <a href="/posts/${response.id}/delete">Delete</a>
-
-    <h5><strong><u>Comments</u></strong> </h5>
-  </div>
-  </form>`
+    <h5><strong><u>Comments</u></strong></h5></div></div>`
 
   let fullHomePost = `<div class="list-group shadow">
       <a href= '/posts/${response.id}' role="button" class="list-group-item"> <div class="lead">${response.title}<br><br> ${response.embed}</div></a>

@@ -22,21 +22,28 @@
 <body>
     <h1><strong>My Blog</strong><a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Post</span></a></h1>
     <div class="posts">
-
 <% current_user.posts.each do |post| %>
-
-<form class="post shadow">
+<div class="post shadow">
   <div id="contact">
-
     <h2><strong><%= post.title %></strong> </h2><br><br>
     <p>Created on: <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %></p>
-
     <br>
     <%= post.embed.html_safe %><br><br>
-    <div class="description">
-    <h4><%= post.description %></h4>
-    </div>
+    <div id="description-<%= post.id %>">
 
+          <% if post.description.length > 500 %>
+            <%= truncate(post.description, length: 500) %>
+            <%= link_to '...Read more', '', class: "read-more-#{post.id}" %>
+            <script>
+              $('.read-more-<%= post.id %>').on('click', function(e) {
+                e.preventDefault()
+                $(this).parent().html('<%= escape_javascript post.description %>')
+              })
+            </script>
+          <% else %>
+            <%= post.description %>
+          <% end %>
+        </div>
     <br>
     <a href="/posts/<%= post.id %>/edit">Edit</a>
     &nbsp; | &nbsp;
@@ -59,7 +66,7 @@
       </div>
     </div>
   </div>
-</form>
+</div>
 <% end %>
   </div>
 
