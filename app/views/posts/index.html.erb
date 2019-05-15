@@ -46,6 +46,7 @@
       <div class="list-group shadow">
         <% post.comments.each do |comment| %>
         <div class="comments list-group-item">
+
         <strong><%= link_to comment.user.email, user_path(comment.user) %></strong> - <%= comment.content %>
         <br>
         <!-- <a href="/posts/<%= post.id %>/edit">Reply</a>
