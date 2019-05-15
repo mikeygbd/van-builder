@@ -9,7 +9,7 @@ class PostSerializer < ActiveModel::Serializer
   #     id: comment.id,
   #     user: {
   #       id: comment.user_id,
-  #       username: User.find(comment.user_id).email
+  #       email: User.find(comment.user_id).email
   #     },
   #     content: comment.content
   #   }
