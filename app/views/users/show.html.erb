@@ -78,8 +78,8 @@
                                 <a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part</span></a>
                                  <h4>Your Parts</h4>
                                </div>
-                                <div class="panel-body">
-                                  <div class="list-group shadow">
+                                <div  class="panel-body">
+                                  <div class="homeParts list-group shadow">
                                     <% current_user.parts.each do |part| %>
                                     <a href= '/parts/<%= part.id %>' role="button" class="list-group-item"><img width=50 src= "<%=part.url%>"> <%=part.manufacturer%> <%=part.name%><br> <strong>Qty:</strong> <%=part.qty%> </a>
                                     <% end %>
@@ -120,7 +120,7 @@
                                <h4>Your Wishlist</h4>
                              </div>
                               <div class="panel-body">
-                                <div class="list-group shadow">
+                                <div class="homeWishlistParts list-group shadow">
                                   <% current_user.wishlist_parts.each do |wishlist_part| %>
                                   <a href= '/wishlist_parts/<%= wishlist_part.id %>' role="button" class="list-group-item"><img width=50 src= "<%=wishlist_part.url%>"> <%=wishlist_part.manufacturer%> <%=wishlist_part.name%><br> <strong>Qty:</strong> <%=wishlist_part.qty%> </a>
                                   <% end %>
@@ -133,8 +133,8 @@
                               <a href="#postModal3" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Post</span></a>
                                <h4>Your Blog Posts</h4>
                              </div>
-                              <div id="homePosts" class="panel-body">
-                                <div class="list-group shadow">
+                              <div  class="panel-body">
+                                <div class="homePosts list-group shadow">
                                   <% current_user.posts.each do |post| %>
                                   <a href= '/posts/<%= post.id %>' role="button" class="list-group-item"> <div class="lead"><%=post.title%><br><br> <%=post.embed.html_safe%></div></a>
                                   <% end %>
@@ -162,18 +162,7 @@
     Add Part
     </div>
     <div class="modal-body">
-        <!-- <form action="/parts/new" method=POST class="form center-block" autocomplete="on">
-          <div class="form-group">
-            <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
-            <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
-            <textarea class="form-control input-lg" name = "price" autofocus="" placeholder="Price" required></textarea>
-            <textarea class="form-control input-lg" name = "qty" autofocus="" placeholder="Quantity" required>1</textarea>
-            <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
-          </div>
-          <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-        </form> -->
-
-        <%= form_for Part.new, :class => 'form center-block' do |f| %>
+        <%= form_for Part.new, :id => 'new_part', :class => 'form center-block' do |f| %>
         <div class="form-group">
         <%= f.text_field :manufacturer, placeholder: "Manufacturer", :required => true , :class => 'form-control input-lg ' %><br>
         <%= f.text_field :name, placeholder: "Name", :required => true , :class => 'form-control input-lg' %><br>
@@ -181,9 +170,7 @@
         <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
         <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
         </div>
-
         <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
-
         <% end %>
     </div>
     </div>
@@ -198,18 +185,7 @@
       Add Part To Wishlist
       </div>
       <div class="modal-body">
-          <!-- <form action="/wishlist_parts/new" method=POST class="form center-block">
-            <div class="form-group">
-              <textarea class="form-control input-lg" name = "manufacturer" autofocus="" placeholder="Manufacturer"></textarea>
-              <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Part Name" required></textarea>
-              <textarea class="form-control input-lg" name = "price" autofocus="" placeholder="Price" required></textarea>
-              <textarea class="form-control input-lg" name = "qty" autofocus="" placeholder="Quantity" required>1</textarea>
-              <textarea class="form-control input-lg" name = "description" autofocus="" placeholder="Description"></textarea>
-            </div>
-            <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-          </form> -->
-
-          <%= form_for WishlistPart.new, :class => 'form center-block' do |f| %>
+          <%= form_for WishlistPart.new, :id => 'new_wishlist_part', :class => 'form center-block' do |f| %>
           <div class="form-group">
           <%= f.text_field :manufacturer, placeholder: "Manufacturer", :required => true, :class => 'form-control input-lg' %><br>
           <%= f.text_field :name, placeholder: "Name", :required => true , :class => 'form-control input-lg' %><br>
@@ -217,11 +193,8 @@
           <%= f.text_field :qty, placeholder: "Quantity", value: 1,:class => 'form-control input-lg ' %> <br>
           <%= f.text_field :description, placeholder: "Description", :class => 'form-control input-lg' %><br>
           </div>
-
           <%= f.submit "Submit", :class => 'btn btn-primary btn-sm', :id => 'submit' %>
-
           <% end %>
-
       </div>
       </div>
   </div>
