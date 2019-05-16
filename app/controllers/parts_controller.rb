@@ -3,12 +3,20 @@ class PartsController < ApplicationController
  # skip_before_action :verify_authenticity_token
   def index
     @parts = current_user.parts.order_by_price
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @post}
+    end
   end
+  
   def all_index
 
     @parts = Part.order_by_price
-    render :index
-  end
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @post}
+    end
+   end
 
   def new
     @part = Part.new
@@ -16,6 +24,10 @@ class PartsController < ApplicationController
 
   def show
     @part = Part.find(params[:id])
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @post}
+    end
   end
 
   def create
