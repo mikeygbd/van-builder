@@ -24,7 +24,7 @@ class VansController < ApplicationController
     @van.user_id = current_user.id
     @van.user = current_user
     @van.save
-    redirect_to user_path(current_user)
+    render json: @van
   else
     redirect_to root_path
     end
