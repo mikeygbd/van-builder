@@ -1,6 +1,10 @@
 class WishlistPartsController < ApplicationController
   def index
     @wishlist_parts = WishlistPart.all
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @post}
+    end
   end
 
   def new
@@ -9,6 +13,10 @@ class WishlistPartsController < ApplicationController
 
   def show
     @wishlist_part = WishlistPart.find(params[:id])
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @post}
+    end
   end
 
   def create
