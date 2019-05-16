@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/css/responsive.css">
         <link rel="stylesheet" href="/css/user_index.css">
           <link rel="stylesheet" href="/css/nav_social.css">
+
         <!-- Fonts -->
         <link rel="shortcut icon" href="/public/img/black_white.png" type="image/x-icon" href="favicon.ico" />
         <link rel="icon" href="/public/img/black_white.png/favicon.jpg">
@@ -30,7 +31,7 @@
             </div>
             <%= render '/layouts/nav' %>
           </header>
-          
+
           <div id="social">
           <a href="https://www.instagram.com/van.builder/?hl=en" target="_blank"><img src="https://ya-webdesign.com/images/instagram-black-logo-png-6.png" alt="Instagram"></a><br>
           <a href="https://twitter.com/" target="_blank"><img src="http://pngimg.com/uploads/twitter/twitter_PNG2.png" alt="Twitter"></a><br>
@@ -54,8 +55,12 @@
                               <div class="panel-thumbnail van"><img src="http://tinyvanbigliving.com/wp-content/uploads/2017/03/logo_03.png" width=250 class="img-responsive"></div>
                               <div class="panel-body">
                                 <p class="lead"> <strong>Welcome, <%= current_user.email %></strong></p>
-                                <div class="van">
+
+
+
+                                <div id ="van" class="van">
                                   <% current_user.vans.each do |van| %>
+
                                 <h1><img width=200 src= "<%=van.url%>"></h1>
 
                                 <p class="lead"><strong>Make:</strong> <%= van.van_make %></p>
@@ -63,11 +68,12 @@
                                 <p class="lead"> <strong>Year:</strong> <%= van.van_year %></p>
                                 <p class="lead"> <strong>Wheelbase:</strong> <%= van.van_wheelbase %></p>
                                 <p class="lead"> <strong>Color:</strong> <%= van.van_color %></p>
-                                <a href="/vans/<%= van.id %>/edit">Edit</a>
-                                &nbsp; | &nbsp;
-                                <a href="/vans/<%= van.id %>/delete">Delete</a>
+                                <p class="lead"><a class="lead" href="/vans/<%= van.id %>/edit">Edit</a>&nbsp; | &nbsp;<a class="lead" href="/vans/<%= van.id %>/delete">Delete</a></p>
+
+
                                 <% end %>
                                 </div>
+
                               </div>
                             </div>
 
@@ -79,7 +85,36 @@
                                 <div  class="panel-body">
                                   <div class="homeParts list-group shadow">
                                     <% current_user.parts.each do |part| %>
-                                    <a href= '/parts/<%= part.id %>' role="button" class="list-group-item"><img width=50 src= "<%=part.url%>"> <%=part.manufacturer%> <%=part.name%><br> <strong>Qty:</strong> <%=part.qty%> </a>
+
+
+                                      <div class="partbutton"><a href= '#partShowModal<%=part.id%>' data-toggle="modal" role="button" class="list-group-item"><img width=50 src= "<%=part.url%>"> <%=part.manufacturer%> <%=part.name%><br> <strong>Qty:</strong> <%=part.qty%> </a></div>
+                                    <div id="partShowModal<%=part.id%>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        Your Part
+                                        </div>
+                                        <div class="modal-body">
+                                          <!-- <div class="parts"> -->
+                                          <form class="lead shadow">
+
+                                              <h2><strong><%= part.manufacturer %> <%= part.name %></strong> </h2>
+                                              <h4><%= part.description %><br></h4>
+                                              <h2><strong>Quantity:</strong> <%= part.qty %><br></h2>
+                                              <img src="<%= part.url %>"></img><br>
+                                              <h2><strong>Unit Price: </strong>$<%= amount(part.price) %></h2>
+                                              <h2><strong>Total Price: </strong>$<%= amount((part.price * part.qty)) %> </h2><br>
+                                              <a href="/parts/<%= part.id %>/edit">Edit</a>
+                                              &nbsp; | &nbsp;
+                                              <a href="/parts/<%= part.id %>/delete">Delete</a>
+
+                                          </form>
+                                          <!-- </div> -->
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
                                     <% end %>
 
                                   </div>
@@ -120,7 +155,34 @@
                               <div class="panel-body">
                                 <div class="homeWishlistParts list-group shadow">
                                   <% current_user.wishlist_parts.each do |wishlist_part| %>
-                                  <a href= '/wishlist_parts/<%= wishlist_part.id %>' role="button" class="list-group-item"><img width=50 src= "<%=wishlist_part.url%>"> <%=wishlist_part.manufacturer%> <%=wishlist_part.name%><br> <strong>Qty:</strong> <%=wishlist_part.qty%> </a>
+                                  <div class="WishlistPartButton"><a href= '#WishlistPartShowModal<%=wishlist_part.id%>' data-toggle="modal" role="button" class="list-group-item"><img width=50 src= "<%=wishlist_part.url%>"> <%=wishlist_part.manufacturer%> <%=wishlist_part.name%><br> <strong>Qty:</strong> <%=wishlist_part.qty%> </a></div>
+                                  <div id="WishlistPartShowModal<%=wishlist_part.id%>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                      Your Part
+                                      </div>
+                                      <div class="modal-body">
+                                        <!-- <div class="parts"> -->
+                                        <form class="lead shadow">
+
+                                            <h2><strong><%= wishlist_part.manufacturer %> <%= wishlist_part.name %></strong> </h2>
+                                            <h4><%= wishlist_part.description %><br></h4>
+                                            <h2><strong>Quantity:</strong> <%= wishlist_part.qty %><br></h2>
+                                            <img src="<%= wishlist_part.url %>"></img><br>
+                                            <h2><strong>Unit Price: </strong>$<%= amount(wishlist_part.price) %></h2>
+                                            <h2><strong>Total Price: </strong>$<%= amount((wishlist_part.price * wishlist_part.qty)) %> </h2><br>
+                                            <a href="/wishlist_parts/<%= wishlist_part.id %>/edit">Edit</a>
+                                            &nbsp; | &nbsp;
+                                            <a href="/wishlist_parts/<%= wishlist_part.id %>/delete">Delete</a>
+
+                                        </form>
+                                        <!-- </div> -->
+                                      </div>
+                                      </div>
+                                  </div>
+                                  </div>
                                   <% end %>
                                 </div>
                               </div>
@@ -175,6 +237,8 @@
 </div>
 </div>
 
+
+
 <div id="postModal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
@@ -227,7 +291,7 @@
           Add Your Van Info
           </div>
           <div class="modal-body">
-              <%= form_for Van.new, :class => 'form center-block' do |f| %>
+              <%= form_for Van.new, :id => 'new_van', :class => 'form center-block' do |f| %>
               <div class="form-group">
               <%= f.text_field :van_make, placeholder: "Make", :required => true, :class => 'form-control input-lg ' %><br>
               <%= f.text_field :van_model, placeholder: "Model", :required => true, :class => 'form-control input-lg' %><br>
