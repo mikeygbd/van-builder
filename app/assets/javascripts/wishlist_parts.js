@@ -4,19 +4,7 @@ $(document).on('turbolinks:load', function () {
     $(f).on("submit", function(e){
       e.preventDefault()
 
-      url = this.action
 
-      data = {
-        'authenticity_token': f.authenticity_token.value,
-        'wishlist_part': {
-          'name': f['wishlist_part[name]'].value,
-          'price': f['wishlist_part[price]'].value,
-          'description': f['wishlist_part[description]'].value,
-          'manufacturer': f['wishlist_part[manufacturer]'].value,
-          'qty': f['wishlist_part[qty]'].value,
-
-        }
-      }
       $('.modal').removeClass('in');
                   $('.modal').attr("aria-hidden","true");
                   $('.modal').css("display", "none");
@@ -26,8 +14,8 @@ $(document).on('turbolinks:load', function () {
 
       $.ajax({
     type: "POST",
-    url: url,
-    data: data,
+    url: this.action,
+    data: $(this).serialize(),
     success: function(response){
 
       const wishlistParts = $(`.wishlistparts`)
@@ -45,8 +33,35 @@ $(document).on('turbolinks:load', function () {
       </div></form>`
 
   let fullHomeWishlistPart = `<div class="list-group shadow">
-  <a href= '/parts/${response.id}' role="button" class="list-group-item"><img width=50 src= "${response.url}"> ${response.manufacturer} ${response.name}<br> <strong>Qty:</strong> ${response.qty} </a>
-    </div></div>`
+  <div class="WishlistPartButton"><a href= '#WishlistPartShowModal${response.id}' data-toggle="modal" role="button" class="list-group-item"><img width=50 src= "${response.url}"> ${response.manufacturer} ${response.name}<br> <strong>Qty:</strong> ${response.qty} </a>
+    </div></div>
+    <div id="WishlistPartShowModal${response.id}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        Your Part
+        </div>
+        <div class="modal-body">
+          <!-- <div class="parts"> -->
+          <form class="lead shadow">
+
+              <h2><strong>${response.manufacturer} ${response.name}</strong> </h2>
+              <h4>${response.description}<br></h4>
+              <h2><strong>Quantity:</strong> ${response.qty}<br></h2>
+              <img src="${response.url}"></img><br>
+              <h2><strong>Unit Price: </strong>$${response.price}</h2>
+              <h2><strong>Total Price: </strong>$${response.price * response.qty} </h2><br>
+              <a href="/parts/${response.id}/edit">Edit</a>
+              &nbsp; | &nbsp;
+              <a href="/parts/${response.id}/delete">Delete</a>
+
+          </form>
+          <!-- </div> -->
+        </div>
+        </div>
+    </div>
+    </div>`
       wishlistParts.append(fullWishlistPart)
       homeWishlistParts.append(fullHomeWishlistPart)
     }
