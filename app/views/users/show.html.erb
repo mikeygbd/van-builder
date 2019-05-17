@@ -77,17 +77,18 @@
                               </div>
                             </div>
 
-                            <div class="panel panel-default shadow">
+                            <div id="homePartsPanel" class="panel panel-default shadow">
                               <div class="panel-heading">
-                                <a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part</span></a>
+                                <a href="#postModal" id ="add-button" class="homePartButton" role="button" data-toggle="modal"><span class="badge">Add Part</span></a>
                                  <h4>Your Parts</h4>
                                </div>
                                 <div  class="panel-body">
-                                  <div class="homeParts list-group shadow">
+                                  <div id="homeParts" class="list-group shadow">
                                     <% current_user.parts.each do |part| %>
 
-
+                                      <div id="parts">                   
                                       <div class="partbutton"><a href= '#partShowModal<%=part.id%>' data-toggle="modal" role="button" class="list-group-item"><img width=50 src= "<%=part.url%>"> <%=part.manufacturer%> <%=part.name%><br> <strong>Qty:</strong> <%=part.qty%> </a></div>
+                                      </div>
                                     <div id="partShowModal<%=part.id%>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
@@ -222,7 +223,7 @@
     Add Part
     </div>
     <div class="modal-body">
-        <%= form_for Part.new, :id => 'new_part', :class => 'form center-block' do |f| %>
+        <%= form_for Part.new, :id => 'new_home_part', :class => 'form center-block' do |f| %>
         <div class="form-group">
         <%= f.text_field :manufacturer, placeholder: "Manufacturer", :required => true , :class => 'form-control input-lg ' %><br>
         <%= f.text_field :name, placeholder: "Name", :required => true , :class => 'form-control input-lg' %><br>
