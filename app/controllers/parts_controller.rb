@@ -8,7 +8,7 @@ class PartsController < ApplicationController
       format.json {render json: @post}
     end
   end
-  
+
   def all_index
 
     @parts = Part.order_by_price
