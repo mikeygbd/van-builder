@@ -8,13 +8,13 @@
 <%= render "layouts/nav" %>
 
 <body>
-    <h1><strong>My Parts</strong><a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Part</span></a></h1>
-    <div class="parts">
+    <h1><strong>My Parts</strong><a href="#postModal" id ="add-button" class="partButton" role="button" data-toggle="modal"><span class="badge">Add Part</span></a></h1>
+    <div id="parts">
 <% total = [] %>
 <% @parts.each do |part| %>
 <% total << (part.price * part.qty) %>
 <form class="partform shadow">
-  <div id="contact">
+
     <h2><strong><%= part.manufacturer %> <%= part.name %></strong> </h2>
     <h4><%= part.description %><br></h4>
     <h2><strong>Quantity:</strong> <%= part.qty %><br></h2>
@@ -24,7 +24,7 @@
     <a href="/parts/<%= part.id %>/edit">Edit</a>
     &nbsp; | &nbsp;
     <a href="/parts/<%= part.id %>/delete">Delete</a>
-  </div>
+
 </form>
 <% end %>
   </div>
