@@ -129,7 +129,7 @@ $(document).on('turbolinks:load', function () {
       .then(part => {
         const {id, name, price, description, manufacturer, user_id, url, page_link, qty } = part
         new Part(id, name, price, description, manufacturer, user_id, url, page_link, qty)
-        f.reset()
+        
       })
      })
        })
